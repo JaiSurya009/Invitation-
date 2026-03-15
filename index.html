@@ -1,41 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invitation</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        .curtain {
-            width: 100%;
-            height: 100vh;
-            background: red;
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            clip-path: polygon(0 0, 0 100%, 50% 100%, 50% 0);
-            animation: open 3s forwards;
-        }
-        @keyframes open {
-            0% {
-                clip-path: polygon(0 0, 0 100%, 50% 100%, 50% 0);
-            }
-            100% {
-                clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitation</title>
+
+<style>
+
+body{
+margin:0;
+overflow:hidden;
+font-family:sans-serif;
+background:black;
+}
+
+#curtainContainer{
+position:fixed;
+width:100%;
+height:100%;
+display:flex;
+z-index:10;
+cursor:pointer;
+}
+
+.curtain{
+width:50%;
+height:100%;
+background:linear-gradient(to right,#6d0000,#b30000,#6d0000);
+transition:all 1.5s ease;
+}
+
+.left{
+border-right:3px solid gold;
+}
+
+.right{
+border-left:3px solid gold;
+}
+
+#invitation{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+background:black;
+}
+
+#invitation img{
+max-width:90%;
+max-height:90%;
+box-shadow:0 0 30px gold;
+border-radius:10px;
+}
+
+.open .left{
+transform:translateX(-100%);
+}
+
+.open .right{
+transform:translateX(100%);
+}
+
+</style>
 </head>
+
 <body>
-    <div class="curtain"></div>
-    <h1 style="position: relative; z-index: 1;">You're Invited!</h1>
+
+<div id="curtainContainer" onclick="openCurtain()">
+<div class="curtain left"></div>
+<div class="curtain right"></div>
+</div>
+
+<div id="invitation">
+<img src="invite.jpg">
+</div>
+
+<script>
+
+function openCurtain(){
+document.getElementById("curtainContainer").classList.add("open");
+setTimeout(()=>{
+document.getElementById("curtainContainer").style.display="none";
+},1500);
+}
+
+</script>
+
 </body>
 </html>
