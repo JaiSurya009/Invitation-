@@ -1,58 +1,18 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Royal Invitation</title>
+<title>Invitation</title>
 
 <style>
 
 body{
 margin:0;
 overflow:hidden;
-background:black;
 font-family:sans-serif;
-}
-
-/* INVITATION */
-
-#invitation{
-position:absolute;
-width:100%;
-height:100%;
-display:flex;
-justify-content:center;
-align-items:center;
 background:black;
 }
-
-#invitation img{
-max-width:92%;
-max-height:92%;
-border-radius:12px;
-box-shadow:0 0 60px rgba(255,215,0,0.8);
-animation:glow 4s infinite alternate;
-}
-
-@keyframes glow{
-from{box-shadow:0 0 40px rgba(255,215,0,0.5);}
-to{box-shadow:0 0 80px rgba(255,215,0,1);}
-}
-
-/* CURTAIN ROD */
-
-#rod{
-position:fixed;
-top:0;
-width:100%;
-height:22px;
-background:linear-gradient(to right,#caa400,#ffd700,#caa400);
-box-shadow:0 5px 12px rgba(0,0,0,0.7);
-z-index:20;
-}
-
-/* CURTAIN CONTAINER */
 
 #curtainContainer{
 position:fixed;
@@ -63,151 +23,69 @@ z-index:10;
 cursor:pointer;
 }
 
-/* CURTAIN STYLE */
-
 .curtain{
 width:50%;
 height:100%;
-transition:transform 2.4s cubic-bezier(.65,.05,.36,1);
-background:
-
-repeating-linear-gradient(
-90deg,
-#6e0000 0px,
-#6e0000 30px,
-#990000 30px,
-#990000 60px
-);
-
-box-shadow:
-inset -20px 0 40px rgba(0,0,0,0.7),
-inset 20px 0 40px rgba(0,0,0,0.4);
+background:linear-gradient(to right,#6d0000,#b30000,#6d0000);
+transition:all 1.5s ease;
 }
-
-/* LEFT CURTAIN */
 
 .left{
-border-right:3px solid rgba(255,215,0,0.6);
+border-right:3px solid gold;
 }
-
-/* RIGHT CURTAIN */
 
 .right{
-border-left:3px solid rgba(255,215,0,0.6);
+border-left:3px solid gold;
 }
 
-/* OPEN ANIMATION */
+#invitation{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+background:black;
+}
+
+#invitation img{
+max-width:90%;
+max-height:90%;
+box-shadow:0 0 30px gold;
+border-radius:10px;
+}
 
 .open .left{
-transform:translateX(-100%) scaleX(.75);
+transform:translateX(-100%);
 }
 
 .open .right{
-transform:translateX(100%) scaleX(.75);
-}
-
-/* ROPE TASSEL */
-
-.rope{
-position:absolute;
-top:40%;
-width:28px;
-height:120px;
-background:linear-gradient(#ffd700,#b89600);
-border-radius:20px;
-box-shadow:0 0 10px gold;
-}
-
-.rope.leftRope{
-left:20px;
-}
-
-.rope.rightRope{
-right:20px;
-}
-
-/* PETALS */
-
-.petal{
-position:absolute;
-top:-20px;
-width:14px;
-height:14px;
-background:#ff5e8a;
-border-radius:50%;
-opacity:.9;
-animation:fall linear forwards;
-}
-
-@keyframes fall{
-to{
-transform:translateY(110vh) rotate(360deg);
-opacity:0;
-}
+transform:translateX(100%);
 }
 
 </style>
-
 </head>
 
 <body>
 
-<div id="rod"></div>
-
 <div id="curtainContainer" onclick="openCurtain()">
-
 <div class="curtain left"></div>
 <div class="curtain right"></div>
-
-<div class="rope leftRope"></div>
-<div class="rope rightRope"></div>
-
 </div>
 
 <div id="invitation">
 <img src="invite.png">
 </div>
 
-<audio id="bell">
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c403e7f52c.mp3">
-</audio>
-
 <script>
 
-/* OPEN CURTAIN */
-
 function openCurtain(){
-
-document.getElementById("bell").play();
-
 document.getElementById("curtainContainer").classList.add("open");
-
-startPetals();
-
 setTimeout(()=>{
 document.getElementById("curtainContainer").style.display="none";
-},2400);
-
-}
-
-/* PETAL EFFECT */
-
-function startPetals(){
-
-for(let i=0;i<40;i++){
-
-let p=document.createElement("div");
-p.className="petal";
-
-p.style.left=Math.random()*100+"vw";
-p.style.animationDuration=(3+Math.random()*4)+"s";
-
-document.body.appendChild(p);
-
-setTimeout(()=>{p.remove();},7000);
-
-}
-
+},1500);
 }
 
 </script>
